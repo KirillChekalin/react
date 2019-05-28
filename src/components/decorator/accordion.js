@@ -17,6 +17,15 @@ export default (OriginalComponent) => class AccordionComponent extends ReactComp
     )
   }
 
+  // toggleOpen = function(id) {
+  //   console.log(id);
+  //   return function(){
+  //       this.setState({
+  //         id: (id === this.state.id) ? null : id
+  //       });
+  //   };
+  // }
+
   toggleOpen = id => ev => {
     ev && ev.preventDefault();
 
