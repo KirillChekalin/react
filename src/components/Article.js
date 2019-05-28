@@ -1,22 +1,12 @@
 import React, {Component} from 'react'
 import CommentList from './comments/CommentList';
-// import toggleOpen from './decorator/toggleOpen'
 
 class Article extends Component{
-  componentWillMount() {
-    console.log('will mount');
-  }
-  componentDidMount() {
-    console.log('did mount');
-  }
-  componentWillUpdate(){
-    console.log('will update');
-  }
 
   render() {
     const {article, isOpen, toggleOpen} = this.props;
-    return (
 
+    return (
       <div className='card mx-auto' >
         <div className='card-header'>
           <h2>
@@ -31,7 +21,6 @@ class Article extends Component{
         </div>
         <CommentList comments = {isOpen ? article.comments : null}/>
       </div>
-
     )
   }
   getBody() {
