@@ -4,7 +4,6 @@ import Comment from './Comment';
 import toggleOpen from '../decorator/toggleOpen';
 
 function CommentList ({comments, isOpen, toggleOpen}){
-  console.log(isOpen);
   // static propTypes = {
   //   comments: PropTypes.array.isRequired
   // }

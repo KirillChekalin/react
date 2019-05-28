@@ -1,8 +1,17 @@
 import React, {Component} from 'react'
 import CommentList from './comments/CommentList';
-import toggleOpen from './decorator/toggleOpen'
+// import toggleOpen from './decorator/toggleOpen'
 
 class Article extends Component{
+  componentWillMount() {
+    console.log('will mount');
+  }
+  componentDidMount() {
+    console.log('did mount');
+  }
+  componentWillUpdate(){
+    console.log('will update');
+  }
 
   render() {
     const {article, isOpen, toggleOpen} = this.props;
@@ -34,4 +43,4 @@ class Article extends Component{
 }
 
 
-export default toggleOpen(Article)
+export default Article
