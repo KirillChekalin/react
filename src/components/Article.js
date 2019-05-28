@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import CommentList from './comments/CommentList';
-import toogleOpen from './decorator/toogleOpen'
+import toggleOpen from './decorator/toggleOpen'
 
 class Article extends Component{
 
@@ -34,4 +34,4 @@ class Article extends Component{
 }
 
 
-export default toogleOpen(Article)
+export default toggleOpen(Article)

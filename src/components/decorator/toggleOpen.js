@@ -11,6 +11,7 @@ export default (OriginalComponent) => class WrappedComponent extends ReactCompon
 
   toggleOpen = (ev) => {
     ev && ev.preventDefault();
+    console.log('click');
     this.setState({
       isOpen: !this.state.isOpen
     });
