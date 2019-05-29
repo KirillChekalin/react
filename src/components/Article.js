@@ -1,7 +1,12 @@
-import React, {Component} from 'react'
+import React, {Component, PureComponent} from 'react'
 import CommentList from './comments/CommentList';
 
-class Article extends Component{
+class Article extends PureComponent{
+
+// оптимизация! использовать осторожно и редко ! в тех местах которые тормозят
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextProps.isOpen !== this.props.isOpen;
+  // }
 
   render() {
     const {article, isOpen, toggleOpen} = this.props;
@@ -23,11 +28,14 @@ class Article extends Component{
       </div>
     )
   }
+
   getBody() {
     const {article, isOpen} = this.props;
     if(!isOpen) return null;
     return <section>{article.text}</section>;
   }
+
+
 
 }
 
