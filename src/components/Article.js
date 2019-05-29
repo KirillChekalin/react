@@ -7,6 +7,9 @@ class Article extends PureComponent{
   // shouldComponentUpdate(nextProps, nextState) {
   //   return nextProps.isOpen !== this.props.isOpen;
   // }
+  componentWillUpdate(){
+    console.log('update');
+  }
 
   render() {
     const {article, isOpen, toggleOpen} = this.props;
