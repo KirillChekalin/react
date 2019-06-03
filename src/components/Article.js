@@ -2,6 +2,8 @@ import React, { PureComponent} from 'react'
 import CommentList from './comments/CommentList';
 import { CSSTransitionGroup } from 'react-transition-group'
 
+import CommentForm from './commentForm/CommentForm';
+
 import '../style.css'
 
 class Article extends PureComponent{
@@ -36,6 +38,7 @@ class Article extends PureComponent{
               {this.getBody()}
         </CSSTransitionGroup>
         </div>
+        <CommentForm isOpen = {isOpen}/>
         <CommentList comments = {isOpen ? article.comments : null}/>
       </div>
     )

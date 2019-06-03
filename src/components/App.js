@@ -5,6 +5,8 @@ import {articles} from './fixtures'
 import 'bootstrap/dist/css/bootstrap.css'
 import Select from 'react-select'
 
+import DayPicker from './dayPicker/DayPicker';
+
 class App extends Component {
   state = {
     selection: null
@@ -18,6 +20,7 @@ class App extends Component {
       <div className="container">
         <Select isMulti options = {options} value = {this.state.selection} onChange = {this.changeSelection}/>
         <h1 className='jumbotron jumbotron-fluid'>App name</h1>
+        <DayPicker />
         <ArticleList articles = {articles}/>
       </div>
       )
