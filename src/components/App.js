@@ -3,25 +3,28 @@ import React,{Component} from 'react'
 import ArticleList from './ArticleList'
 import {articles} from './fixtures'
 import 'bootstrap/dist/css/bootstrap.css'
-import UserForm from './UserForm'
-
+import Select from 'react-select'
 
 class App extends Component {
   state = {
-    username: ''
+    selection: null
   }
   render() {
+    const options = articles.map(article => ({
+      label: article.title,
+      value: article.id
+    }))
     return (
       <div className="container">
-        Name: <UserForm />
-        <h1 className='jumbotron'>App name</h1>
+        <Select isMulti options = {options} value = {this.state.selection} onChange = {this.changeSelection}/>
+        <h1 className='jumbotron jumbotron-fluid'>App name</h1>
         <ArticleList articles = {articles}/>
       </div>
       )
     }
-  handleUserChange = (e) => {
+  changeSelection = selection => {
     this.setState({
-      username: e.target.value
+      selection: selection
     })
   }
 }
