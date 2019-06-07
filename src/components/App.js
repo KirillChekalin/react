@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import Select from 'react-select'
 
 import DayPicker from './dayPicker/DayPicker';
+import Counter from './Counter';
 
 class App extends Component {
   state = {
@@ -21,7 +22,8 @@ class App extends Component {
         <Select isMulti options = {options} value = {this.state.selection} onChange = {this.changeSelection}/>
         <h1 className='jumbotron jumbotron-fluid'>App name</h1>
         <DayPicker />
-        <ArticleList articles = {articles}/>
+        <Counter />
+        <ArticleList/>
       </div>
       )
     }

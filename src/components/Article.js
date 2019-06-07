@@ -1,7 +1,8 @@
 import React, { PureComponent} from 'react'
 import CommentList from './comments/CommentList';
 import { CSSTransitionGroup } from 'react-transition-group'
-
+import {connect} from 'react-redux'
+import {deleteArticle} from '../AC'
 import CommentForm from './commentForm/CommentForm';
 
 import '../style.css'
@@ -25,9 +26,10 @@ class Article extends PureComponent{
         <div className='card-header'>
           <h2>
             {article.title}
-            <button  onClick = {toggleOpen} className='btn btn-primary btn-lg float-right'>
+            <button  onClick = {toggleOpen} className='btn btn-primary btn-md float-right'>
               {isOpen ? 'close' : 'open'}
             </button>
+            <button onClick = {this.handleDelete} className='btn btn-warning btn-md float-right'>delete me</button>
           </h2>
         </div>
         <div  className={isOpen ? 'card-body' : null}>
@@ -44,6 +46,11 @@ class Article extends PureComponent{
     )
   }
 
+  handleDelete = () => {
+    const{deleteArticle, article} = this.props;
+    deleteArticle(article.id);
+  };
+
   getBody() {
     const {article, isOpen} = this.props;
     if(!isOpen) return null;
@@ -55,4 +62,4 @@ class Article extends PureComponent{
 }
 
 
-export default Article
+export default connect(null, {deleteArticle})(Article)
