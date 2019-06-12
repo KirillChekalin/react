@@ -11,17 +11,17 @@ class SelectFilter extends Component {
     articles: PropTypes.array.isRequired
   };
   // стэйт можно и не ставить, но придется чтото делать с свойством value компонента select, ато иначе выдается ошибка unique key
-  
-  state = {
-    selectedOptions: null,
-  }
+
+  // state = {
+  //   selectedOptions: null,
+  // }
 
   handleChange = selected => {
 
-    this.setState({
-      selectedOptions: selected
-    })
-    if (!selected)  return ;
+    // this.setState({
+    //   selectedOptions: selected
+    // })
+    if (!selected)  return this.props.changeSelection([]);
 
     return this.props.changeSelection(selected.map(option => option.value))
   };
@@ -34,14 +34,13 @@ class SelectFilter extends Component {
       label: article.title,
       value: article.id
     }))
-    const {selectedOptions} = this.state;
+    // const {selectedOptions} = this.state;
 
     return (
       <Select
         isMulti
         options = {options}
         onChange = {this.handleChange}
-        value = {selectedOptions}
       />
     );
   }

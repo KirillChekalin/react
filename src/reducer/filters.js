@@ -11,6 +11,7 @@ const defaultFilters = {
 export default (filters = defaultFilters, action) => {
 
   const {type, payload} = action;
+  console.log(payload);
 
 
   switch (type) {
