@@ -9,10 +9,8 @@ const defaultFilters = {
 };
 
 export default (filters = defaultFilters, action) => {
-  // console.log(filters, action);
 
   const {type, payload} = action;
-  // console.log(action.payload);
 
 
   switch (type) {
