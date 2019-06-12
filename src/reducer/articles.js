@@ -1,5 +1,6 @@
 import {articles as defaultArticles} from '../components/fixtures.js'
-import {DELETE_ARTICLE} from '../constans'
+import {DELETE_ARTICLE, FILTER_ARTICLE} from '../constans'
+
 
 export default (articleState = defaultArticles, action) => {
   const {type, payload} = action;

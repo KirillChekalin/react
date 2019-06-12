@@ -2,6 +2,8 @@ import React,{Component} from 'react'
 import DayPicker, {DateUtils} from 'react-day-picker';
 import 'react-day-picker/lib/style.css'
 import './style.css'
+// import {connect} from 'react-redux'
+// import {filterArticle} from '../../AC'
 
 class Calendar extends Component {
   static defaultProps = {
