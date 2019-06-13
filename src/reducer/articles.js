@@ -1,4 +1,4 @@
-import {articles as defaultArticles} from '../components/fixtures.js'
+import {normalizedArticles as defaultArticles} from '../components/fixtures.js'
 import {DELETE_ARTICLE, FILTER_ARTICLE} from '../constans'
 
 

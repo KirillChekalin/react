@@ -13,7 +13,6 @@ class ArticleList extends Component {
 
   render () {
     const {articles, isOpen, toggleOpen} = this.props;
-    console.log(123);
 
     const articleElements = articles.map(article => {
       return(

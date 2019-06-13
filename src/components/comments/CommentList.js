@@ -27,9 +27,10 @@ function getBody ({comments, isOpen}) {
   if (!isOpen) return null
 
   if (!comments) return null
-  const commentElements = comments.map(comment => {
-    if (!comment) return null
-    return <li key = {comment.id}><Comment comment = {comment} /></li>
+
+  const commentElements = comments.map(id => {
+    if (!id) return null
+    return <li key = {id}><Comment id = {id} /></li>
   })
   return commentElements
 }
