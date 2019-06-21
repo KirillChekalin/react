@@ -4,8 +4,6 @@ import 'react-day-picker/lib/style.css'
 
 import './style.css'
 
-import Select from 'react-select';
-
 import {connect} from 'react-redux';
 import {changeDateRange} from '../../AC'
 

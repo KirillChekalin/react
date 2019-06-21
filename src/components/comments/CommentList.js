@@ -3,7 +3,8 @@ import React from 'react';
 import Comment from './Comment';
 import toggleOpen from '../decorator/toggleOpen';
 
-function CommentList ({comments, isOpen, toggleOpen}){
+function CommentList (props){
+  const {comments, isOpen, toggleOpen} = props;
   // static propTypes = {
   //   comments: PropTypes.array.isRequired
   // }

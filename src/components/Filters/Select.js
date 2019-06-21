@@ -8,7 +8,7 @@ import {changeSelection} from '../../AC'
 
 class SelectFilter extends Component {
   static propTypes = {
-    articles: PropTypes.array.isRequired
+    articles: PropTypes.object.isRequired
   };
   // стэйт можно и не ставить, но придется чтото делать с свойством value компонента select, ато иначе выдается ошибка unique key
 
@@ -17,10 +17,6 @@ class SelectFilter extends Component {
   // }
 
   handleChange = selected => {
-
-    // this.setState({
-    //   selectedOptions: selected
-    // })
     if (!selected)  return this.props.changeSelection([]);
 
     return this.props.changeSelection(selected.map(option => option.value))
@@ -29,12 +25,12 @@ class SelectFilter extends Component {
   render() {
 
 
-    const {articles, selected} = this.props;
-    const options = articles.map(article => ({
-      label: article.title,
-      value: article.id
-    }))
-    // const {selectedOptions} = this.state;
+    const {articles} = this.props;
+
+    const options = Object.keys(articles).map(id => ({
+      label: articles[id].title,
+      value: id
+    }));
 
     return (
       <Select

@@ -37,7 +37,7 @@ class Article extends PureComponent{
               {this.getBody()}
         </CSSTransitionGroup>
         </div>
-        <CommentForm isOpen = {isOpen}/>
+        <CommentForm articleId = {article.id} isOpen = {isOpen}/>
         <CommentList comments = {isOpen ? article.comments : null}/>
       </div>
     )

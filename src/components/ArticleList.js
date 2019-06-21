@@ -5,10 +5,16 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {filtratedArticlesSelector} from '../selectors'
 
+import {loadAllArticles} from '../AC';
+
 class ArticleList extends Component {
 
   static propTypes = {
     articles: PropTypes.array.isRequired
+  }
+
+  componentDidMount() {
+    this.props.loadAllArticles();
   }
 
   render () {
@@ -38,4 +44,4 @@ export default connect((state) => {
   return {
     articles: filtratedArticlesSelector(state)
   };
-})(accordion(ArticleList));
+}, {loadAllArticles})(accordion(ArticleList));

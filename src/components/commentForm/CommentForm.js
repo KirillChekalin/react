@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {addNewComment} from '../../AC';
 
 import './style.css'
 
@@ -31,11 +33,24 @@ class CommentForm extends Component {
        <div className="input-group mb-3">
           <input type="text" onChange = {this.handleUsernameChange} className={isWrongUsername ? "wrong form-control" : "form-control"} placeholder="Input you name"></input>
           <div className="input-group-append">
-            <button className="btn btn-success" type="submit">Post</button>
+            <button onClick = {this.handleSubmit} className="btn btn-success" type="submit">Post</button>
           </div>
       </div>
     </div>
     )
+  }
+
+  handleSubmit = (e) => {
+    const comment = {
+      user: this.state.username.data,
+      text: this.state.message.data
+    }
+    const {articleId} = this.props;
+    const payload = {
+      comment,
+      articleId
+    };
+    this.props.addNewComment(payload);
   }
 
   handleTextareaChange = (e) => {
@@ -62,4 +77,6 @@ class CommentForm extends Component {
 
 }
 
-export default CommentForm;
+export default connect(state => ({
+
+}), {addNewComment})(CommentForm);

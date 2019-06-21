@@ -1,4 +1,6 @@
-import {DELETE_ARTICLE, INCREMENT, FILTER_ARTICLE, CHANGE_SELECTION, CHANGE_DATE_RANGE} from '../constans';
+import {ADD_COMMENT,  DELETE_ARTICLE, INCREMENT,
+    CHANGE_SELECTION, CHANGE_DATE_RANGE, LOAD_ALL_ARTICLES
+ } from '../constans';
 
 export function increment() {
   return {
@@ -25,5 +27,20 @@ export function changeDateRange(dateRange) {
   return {
     type: CHANGE_DATE_RANGE,
     payload: {dateRange}
+  };
+}
+
+export function addNewComment(comment) {
+  return {
+    type: ADD_COMMENT,
+    payload: comment,
+    generateId: true
+  }
+}
+
+export function loadAllArticles() {
+  return {
+    type: LOAD_ALL_ARTICLES,
+    callAPI: 'http://localhost:3030/article'
   };
 }
