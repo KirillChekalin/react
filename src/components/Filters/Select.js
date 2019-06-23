@@ -8,9 +8,9 @@ import {changeSelection} from '../../AC'
 import {mapToArr} from '../../helpers'
 
 class SelectFilter extends Component {
-  static propTypes = {
-    articles: PropTypes.object.isRequired
-  };
+  // static propTypes = {
+  //   articles: PropTypes.object.isRequired
+  // };
   // стэйт можно и не ставить, но придется чтото делать с свойством value компонента select, ато иначе выдается ошибка unique key
 
   // state = {
@@ -25,11 +25,8 @@ class SelectFilter extends Component {
 
 
   render() {
-
     const {articles} = this.props;
-    const temp = mapToArr(articles);
-
-    const options = temp.map(article => ({
+    const options = articles.map(article => ({
       label: article.title,
       value: article.id
     }));
@@ -47,6 +44,6 @@ class SelectFilter extends Component {
 
 export default connect(state => ({
   selected: state.filters.selected,
-  articles: state.articles
+  articles: mapToArr(state.articles.entities)
 }
 ), {changeSelection})(SelectFilter);

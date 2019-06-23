@@ -1,6 +1,12 @@
+import {START, SUCCESS, FAIL} from '../constans'
+
 export default store => next => action => {
-  const {callAPI} = action;
+  const {callAPI, type, ...rest} = action;
   if (!callAPI) return next(action);
+
+  next({
+    ...rest, type: type + START
+  })
 
   fetch(callAPI, {
   mode: 'cors',
@@ -10,8 +16,7 @@ export default store => next => action => {
 })
     .then(res => res.json())
     .then(response => {
-      console.log('---response from server ',response);
-      return next({...action, response});
+      return next({...rest, type: type + SUCCESS, response});
     })
-    .catch(err => console.log('---error', err))
+    .catch(err => next({...rest, type: type + FAIL, err}))
 }
