@@ -10,6 +10,7 @@ export default store => next => action => {
 })
     .then(res => res.json())
     .then(response => {
+      console.log('---response from server ',response);
       return next({...action, response});
     })
     .catch(err => console.log('---error', err))

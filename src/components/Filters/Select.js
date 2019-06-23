@@ -5,6 +5,7 @@ import Select from 'react-select';
 
 import {connect} from 'react-redux';
 import {changeSelection} from '../../AC'
+import {mapToArr} from '../../helpers'
 
 class SelectFilter extends Component {
   static propTypes = {
@@ -22,14 +23,15 @@ class SelectFilter extends Component {
     return this.props.changeSelection(selected.map(option => option.value))
   };
 
+
   render() {
 
-
     const {articles} = this.props;
+    const temp = mapToArr(articles);
 
-    const options = Object.keys(articles).map(id => ({
-      label: articles[id].title,
-      value: id
+    const options = temp.map(article => ({
+      label: article.title,
+      value: article.id
     }));
 
     return (
@@ -46,4 +48,5 @@ class SelectFilter extends Component {
 export default connect(state => ({
   selected: state.filters.selected,
   articles: state.articles
-}), {changeSelection})(SelectFilter);
+}
+), {changeSelection})(SelectFilter);

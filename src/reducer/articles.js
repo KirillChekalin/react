@@ -1,16 +1,17 @@
-import {normalizedArticles as defaultArticles} from '../components/fixtures.js'
+// import {normalizedArticles as defaultArticles} from '../components/fixtures.js'
 import {DELETE_ARTICLE,  ADD_COMMENT, LOAD_ALL_ARTICLES} from '../constans'
-// import {arrToMap} from '../helpers'
+import {arrToMap} from '../helpers'
+import {Map, Record} from 'immutable'
 
+const ArticleRecord = Record({
+  text: null,
+  title: '',
+  id: null,
+  comments: []
+})
+const defaultState = new Map({});
 
-function arrToMap (obj) {
-  return  obj.reduce((acc, article) => {
-    acc[article.id] = article;
-    return acc;
-  },{});
-}
-
-export default (articleState = {}, action) => {
+export default (articleState = defaultState, action) => {
   const {type, payload, randomId, response} = action;
   switch (type) {
     case DELETE_ARTICLE: {
@@ -28,8 +29,8 @@ export default (articleState = {}, action) => {
         }
       };
     }
-    case LOAD_ALL_ARTICLES :      
-      return arrToMap(response);
+    case LOAD_ALL_ARTICLES :
+      return arrToMap(response, ArticleRecord);
   }
   return articleState;
 }
