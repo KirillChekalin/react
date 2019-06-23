@@ -19,16 +19,8 @@ export default (articleState = defaultState, action) => {
       delete tmpState[payload.id];
       return tmpState;
     }
-    case ADD_COMMENT: {
-      const article = articleState[payload.articleId];
-      return {
-        ...articleState,
-        [payload.articleId]: {
-          ...article,
-          comments: (article.comments || []).concat(randomId)
-        }
-      };
-    }
+    case ADD_COMMENT:
+      return articleState.updateIn([payload.articleId, 'comments'], comments => comments.concat(randomId));
     case LOAD_ALL_ARTICLES :
       return arrToMap(response, ArticleRecord);
   }
