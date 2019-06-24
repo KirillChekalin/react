@@ -1,5 +1,6 @@
 import {ADD_COMMENT,  DELETE_ARTICLE, INCREMENT,
-    CHANGE_SELECTION, CHANGE_DATE_RANGE, LOAD_ALL_ARTICLES
+    CHANGE_SELECTION, CHANGE_DATE_RANGE, LOAD_ALL_ARTICLES,
+    LOAD_ARTICLE, START, SUCCESS, FAIL
  } from '../constans';
 
 export function increment() {
@@ -44,3 +45,34 @@ export function loadAllArticles() {
     callAPI: 'http://localhost:3030/article'
   };
 }
+
+export function loadArticle(id) {
+  return (dispatch) => {
+    dispatch({
+      type: LOAD_ARTICLE + START,
+      payload: {id}
+    });
+
+    setTimeout(() => {
+      fetch('http://localhost:3030/article/' + id)
+        .then(res => res.json())
+        .then(response => dispatch({
+          type: LOAD_ARTICLE + SUCCESS,
+          payload: {id, response}
+        }))
+        .catch(error => dispatch({
+          type: LOAD_ARTICLE + FAIL,
+          payload: {id, error}
+        }))
+    }, 1000)
+  };
+}
+
+/*
+export function loadArticle(id) {
+  return {
+    type: LOAD_ARTICLE,
+    callAPI: 'http://localhost:3030/article/${id}'
+  };
+}
+*/

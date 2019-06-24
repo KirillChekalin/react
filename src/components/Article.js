@@ -2,9 +2,9 @@ import React, { PureComponent} from 'react'
 import CommentList from './comments/CommentList';
 import { CSSTransitionGroup } from 'react-transition-group'
 import {connect} from 'react-redux'
-import {deleteArticle} from '../AC'
+import {deleteArticle, loadArticle} from '../AC'
 import CommentForm from './commentForm/CommentForm';
-
+import Loader from './Loader'
 import '../style.css'
 
 class Article extends PureComponent{
@@ -13,6 +13,10 @@ class Article extends PureComponent{
   // shouldComponentUpdate(nextProps, nextState) {
   //   return nextProps.isOpen !== this.props.isOpen;
   // }
+
+  componentWillReceiveProps({isOpen, loadArticle, article}) {
+    if (isOpen && !article.text && !article.loading) loadArticle(article.id);
+  }
 
   render() {
     const {article, isOpen, toggleOpen} = this.props;
@@ -51,6 +55,7 @@ class Article extends PureComponent{
   getBody() {
     const {article, isOpen} = this.props;
     if(!isOpen) return null;
+    if (article.loading) return <Loader/>;
     return <section>{article.text}</section>;
   }
 
@@ -59,4 +64,4 @@ class Article extends PureComponent{
 }
 
 
-export default connect(null, {deleteArticle})(Article)
+export default connect(null, {deleteArticle, loadArticle})(Article)
