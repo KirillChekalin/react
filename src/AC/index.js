@@ -1,6 +1,7 @@
 import {ADD_COMMENT,  DELETE_ARTICLE, INCREMENT,
     CHANGE_SELECTION, CHANGE_DATE_RANGE, LOAD_ALL_ARTICLES,
-    LOAD_ARTICLE, START, SUCCESS, FAIL
+    LOAD_ARTICLE, LOAD_ALL_COMMENTS, START, SUCCESS, FAIL,
+    DECREMENT
  } from '../constans';
 
 export function increment() {
@@ -8,6 +9,12 @@ export function increment() {
     type: INCREMENT
   };
 };
+
+export function decrement() {
+  return {
+    type: DECREMENT
+  };
+}
 
 export function deleteArticle(id) {
   return {
@@ -43,6 +50,14 @@ export function loadAllArticles() {
   return {
     type: LOAD_ALL_ARTICLES,
     callAPI: 'http://localhost:3030/article'
+  };
+}
+
+export function loadAllComments(articleId) {
+  return {
+    type: LOAD_ALL_COMMENTS,
+    callAPI: 'http://localhost:3030/comment/' + articleId,
+    payload: {articleId}
   };
 }
 

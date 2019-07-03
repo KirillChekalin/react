@@ -5,9 +5,8 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {filtratedArticlesSelector} from '../selectors'
 import Loader from './Loader';
-
-
 import {loadAllArticles} from '../AC';
+
 
 class ArticleList extends Component {
 

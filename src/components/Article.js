@@ -20,6 +20,10 @@ class Article extends PureComponent{
 
   render() {
     const {article, isOpen, toggleOpen} = this.props;
+
+    const {commentsIsLoaded, commentsIsLoading, comments} = article;
+    const commentsId = comments;
+
     // const [inProp, setInProp] = useState(false);
 
     return (
@@ -42,7 +46,12 @@ class Article extends PureComponent{
         </CSSTransitionGroup>
         </div>
         <CommentForm articleId = {article.id} isOpen = {isOpen}/>
-        <CommentList comments = {isOpen ? article.comments : null}/>
+        <CommentList
+          articleId = {isOpen ? article.id : null}
+          commentsId = {commentsId}
+          loading = {commentsIsLoading}
+          loaded = {commentsIsLoaded}
+        />
       </div>
     )
   }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {increment} from '../AC'
+import {increment, decrement} from '../AC'
 
 class Counter extends Component {
   static propTypes = {
@@ -12,8 +12,11 @@ class Counter extends Component {
 
     return(
       <div>
-        <h2>++{this.props.counter}</h2>
-        <button className = 'btn btn-sm btn-primary' onClick = {this.handleIncrement} >Increment</button>
+        <h2>{this.props.counter}</h2>
+        <div className = 'btn-group'>
+          <button className = 'btn btn-sm btn-primary' onClick = {this.handleIncrement} >Increment</button>
+          <button className = 'btn btn-sm btn-primary' onClick = {this.handleDecrement} >Decrement</button>
+        </div>
       </div>
     );
   }
@@ -21,6 +24,11 @@ class Counter extends Component {
   handleIncrement = (e) => {
     const {increment} = this.props;
     increment();
+  }
+
+  handleDecrement = (e) => {
+    const {decrement} = this.props;
+    decrement();
   }
 }
 // function mapStateToProps(state){
@@ -40,6 +48,6 @@ class Counter extends Component {
 
 export default connect((state) => ({
   counter: state.count
-}), {increment})(Counter);
+}), {increment, decrement})(Counter);
 
 //export default decorator(Counter);

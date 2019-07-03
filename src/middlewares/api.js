@@ -9,11 +9,11 @@ export default store => next => action => {
   })
 
   fetch(callAPI, {
-  mode: 'cors',
-  headers: {
-    'Access-Control-Allow-Origin':'*'
-  }
-})
+      mode: 'cors',
+      headers: {
+        'Access-Control-Allow-Origin':'*'
+      }
+    })
     .then(res => res.json())
     .then(response => {
       return next({...rest, type: type + SUCCESS, response});
