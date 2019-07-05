@@ -33,6 +33,14 @@ function Comment ({comment}) {
 // }
 //
 // export default connect(mapStateToProps)(Comment);
+const mapStateToProps = () => {
+  const commentSelector = commentSelectorFactory();
 
+  return (state, ownProps) => {
+    return {
+      comment: commentSelector(state, ownProps)
+    };
+  };
+}
 
-export default Comment;
+export default connect(mapStateToProps)(Comment);

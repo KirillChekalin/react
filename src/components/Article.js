@@ -47,10 +47,8 @@ class Article extends PureComponent{
         </div>
         <CommentForm articleId = {article.id} isOpen = {isOpen}/>
         <CommentList
-          articleId = {isOpen ? article.id : null}
-          commentsId = {commentsId}
-          loading = {commentsIsLoading}
-          loaded = {commentsIsLoaded}
+          isOpen = {isOpen ? 'article.id' : null}
+          article = {article}
         />
       </div>
     )
@@ -64,6 +62,7 @@ class Article extends PureComponent{
   getBody() {
     const {article, isOpen} = this.props;
     if(!isOpen) return null;
+
     if (article.loading) return <Loader/>;
     return <section>{article.text}</section>;
   }
