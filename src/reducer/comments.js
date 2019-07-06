@@ -1,5 +1,5 @@
-import {LOAD_ALL_COMMENTS, ADD_COMMENT, SUCCESS, START} from '../constans'
-import {OrderedMap, Record, Map} from 'immutable';
+import {LOAD_ALL_COMMENTS, ADD_COMMENT, SUCCESS} from '../constans'
+import {OrderedMap, Record} from 'immutable';
 import {arrToMap} from '../helpers';
 
 const CommentRecord = Record({

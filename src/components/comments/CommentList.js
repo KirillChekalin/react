@@ -4,12 +4,8 @@ import Comment from './Comment';
 import toggleOpen from '../decorator/toggleOpen';
 import {connect} from 'react-redux'
 import {loadAllComments} from '../../AC';
-import {arrToMap, mapToArr} from '../../helpers';
-import {commentSelectorFactory} from '../../selectors'
-
 
 class CommentList extends Component {
-
 
   componentWillReceiveProps({loadAllComments, article, isOpen}) {
     if (!this.props.isOpen && isOpen && !article.commentsIsLoading && !article.commentsIsLoaded) {

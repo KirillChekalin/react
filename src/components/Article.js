@@ -21,11 +21,6 @@ class Article extends PureComponent{
   render() {
     const {article, isOpen, toggleOpen} = this.props;
 
-    const {commentsIsLoaded, commentsIsLoading, comments} = article;
-    const commentsId = comments;
-
-    // const [inProp, setInProp] = useState(false);
-
     return (
       <div className='card mx-auto' >
         <div className='card-header'>
