@@ -18,7 +18,9 @@ class CommentList extends Component {
   }
 
   render() {
-    const {isOpen, article, toggleOpen} = this.props;
+    const {isOpen, article, toggleOpen, isArticleOpen} = this.props;
+
+    if (!isArticleOpen) return null;
     const text = isOpen ? 'hide comments' : 'show comments';
 
     return (

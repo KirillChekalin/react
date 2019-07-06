@@ -47,7 +47,7 @@ class Article extends PureComponent{
         </div>
         <CommentForm articleId = {article.id} isOpen = {isOpen}/>
         <CommentList
-          isOpen = {isOpen ? 'article.id' : null}
+          isArticleOpen = {isOpen ? article.id : null}
           article = {article}
         />
       </div>
