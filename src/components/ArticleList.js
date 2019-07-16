@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import Article from './Article'
 import accordion from './decorator/accordion'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {filtratedArticlesSelector} from '../selectors'
 import Loader from './Loader';
 import {loadAllArticles} from '../AC';
+import {NavLink} from 'react-router-dom';
 
 
 class ArticleList extends Component {
@@ -20,18 +20,16 @@ class ArticleList extends Component {
   }
 
   render () {
-    const {articles, isOpen, toggleOpen, loading} = this.props;
+    const {articles, loading} = this.props;
 
     if(loading) return <Loader />;
 
     const articleElements = articles.map(article => {
       return(
         <li key = {article.id}>
-          <Article
-            article = {article}
-            isOpen = {article.id === isOpen}
-            toggleOpen = {toggleOpen(article.id)}
-          />
+          <NavLink to = {`/articles/${article.id}`} activeStyle = {{color: 'red'}}>
+            {article.title}
+          </NavLink>
         </li>
       )
     });

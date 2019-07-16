@@ -1,7 +1,7 @@
 import {ADD_COMMENT,  DELETE_ARTICLE, INCREMENT,
     CHANGE_SELECTION, CHANGE_DATE_RANGE, LOAD_ALL_ARTICLES,
     LOAD_ARTICLE, LOAD_ALL_COMMENTS, START, SUCCESS, FAIL,
-    DECREMENT
+    DECREMENT, LOAD_COMMENTS, LOAD_COMMENTS_FOR_PAGE
  } from '../constans';
 
 export function increment() {
@@ -61,6 +61,14 @@ export function loadAllComments(articleId) {
   };
 }
 
+export function loadComments(offset, limit) {
+  return {
+    type: LOAD_COMMENTS,
+    callAPI: `http://localhost:3030/comment?limit=${limit}&offset=${offset}`,
+    payload: {offset, limit}
+  }
+}
+
 export function loadArticle(id) {
   return (dispatch) => {
     dispatch({
@@ -80,6 +88,19 @@ export function loadArticle(id) {
           payload: {id, error}
         }))
     }, 1000)
+  };
+}
+
+export function checkAndLoadCommentsForPage(page) {
+  return (dispatch, getState) => {
+    const {comments: {pagination}} = getState();
+    if (pagination.getIn([page, 'loading']) || pagination.getIn([page, 'ids'])) return;
+
+    dispatch({
+      type: LOAD_COMMENTS_FOR_PAGE,
+      payload: {page},
+      callAPI: `http://localhost:3030/comment?limit=5&offset=${(page - 1) * 5}`
+    })
   };
 }
 
